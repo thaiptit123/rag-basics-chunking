@@ -124,7 +124,7 @@ def main():
         best_idx = np.argmax(scores)
         snippet = chunks[best_idx]
         is_hit = expected_keyword.lower() in snippet.lower()
-        return is_hit
+        return is_hit, snippet
     
     # In Bảng kết quả (Format text table)
     print(f"{'Query':<45} | {'Fixed':<5} | {'Recurs':<6} | {'Struct':<6}")
@@ -138,9 +138,10 @@ def main():
         q_emb = model.encode(query, convert_to_numpy=True, normalize_embeddings=True)
         
         # Lấy đánh giá Top 1 của từng chiến lược
-        f_hit = evaluate_top_1(q_emb, fixed_embs, fixed_chunks, expected)
-        r_hit = evaluate_top_1(q_emb, recursive_embs, recursive_chunks, expected)
-        s_hit = evaluate_top_1(q_emb, structure_embs, structure_chunks, expected)
+        # Lấy đánh giá Top 1 của từng chiến lược
+        f_hit, f_snip = evaluate_top_1(q_emb, fixed_embs, fixed_chunks, expected)
+        r_hit, r_snip = evaluate_top_1(q_emb, recursive_embs, recursive_chunks, expected)
+        s_hit, s_snip = evaluate_top_1(q_emb, structure_embs, structure_chunks, expected)
         
         if f_hit: hit_counts["Fixed"] += 1
         if r_hit: hit_counts["Recurs"] += 1
@@ -152,11 +153,25 @@ def main():
             
         print(f"{q_str:<45} | {'Hit' if f_hit else 'Miss':<5} | {'Hit' if r_hit else 'Miss':<6} | {'Hit' if s_hit else 'Miss':<6}")
         
+        # Lưu snippet để in chi tiết
+        test_cases[i]["snippets"] = {
+            "Fixed": f_snip.replace('\n', ' ')[:30] + "...",
+            "Recurs": r_snip.replace('\n', ' ')[:30] + "...",
+            "Struct": s_snip.replace('\n', ' ')[:30] + "..."
+        }
+        
     print("-" * 55)
     
     total = len(test_cases)
     print(f"{'Tổng số câu đúng (Accuracy@1):':<45} | {hit_counts['Fixed']}/{total}   | {hit_counts['Recurs']}/{total}    | {hit_counts['Struct']}/{total}")
     
+    print("\nChi tiết Top-1 Chunk được lấy cho mỗi Query:")
+    for i, test in enumerate(test_cases):
+        print(f"\nQ{i+1}: {test['query']}")
+        print(f" - Fixed : {test['snippets']['Fixed']}")
+        print(f" - Recurs: {test['snippets']['Recurs']}")
+        print(f" - Struct: {test['snippets']['Struct']}")
+        
     print_separator("HOÀN TẤT DEMO")
 
 if __name__ == "__main__":
