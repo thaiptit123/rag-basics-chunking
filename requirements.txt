@@ -1,0 +1,4 @@
+sentence-transformers>=2.2.2
+numpy>=1.21.0
+tiktoken>=0.7.0
+langchain-text-splitters>=0.2.2
