@@ -63,7 +63,7 @@ def main():
     ]
     markdown_splitter = MarkdownHeaderTextSplitter(
         headers_to_split_on=headers_to_split_on,
-        strip_headers=False # GIỮ LẠI METADATA TRONG NỘI DUNG CHUNK
+        strip_headers=False # Giữ heading trong page_content; metadata vẫn nằm trong doc.metadata
     )
     md_docs = markdown_splitter.split_text(document_text)
     
@@ -80,6 +80,11 @@ def main():
     print_stats("Fixed", fixed_chunks)
     print_stats("Recursive", recursive_chunks)
     print_stats("Structure", structure_chunks)
+
+    print("\nIn thử metadata và nội dung của 2 chunk đầu tiên (Structure-aware) để kiểm chứng:")
+    for doc in structure_docs[:2]:
+        print(f"Metadata: {doc.metadata}")
+        print(f"Content : {doc.page_content[:50]} ...\n")
 
     # 3. TẠO EMBEDDING VÀ SO SÁNH RETRIEVAL
     print_separator("TẠO EMBEDDING VÀ ĐÁNH GIÁ HIT@1")
