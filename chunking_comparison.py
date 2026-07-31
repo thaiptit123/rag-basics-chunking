@@ -1,4 +1,3 @@
-import os
 import tiktoken
 import numpy as np
 from sentence_transformers import SentenceTransformer
@@ -14,9 +13,10 @@ def count_tokens_tiktoken(text: str, model_name: str = "gpt-3.5-turbo") -> int:
     return len(encoding.encode(text))
 
 def print_separator(title: str):
-    print(f"\n{'='*75}")
-    print(f" {title} ".center(75, '='))
-    print(f"{'='*75}\n")
+    width = 55
+    print(f"\n{'='*width}")
+    print(f" {title} ".center(width, '='))
+    print(f"{'='*width}\n")
 
 def main():
     print_separator("RAG BASICS: CHUNKING & RETRIEVAL")
@@ -128,7 +128,7 @@ def main():
     
     # In Bảng kết quả (Format text table)
     print(f"{'Query':<45} | {'Fixed':<5} | {'Recurs':<6} | {'Struct':<6}")
-    print("-" * 75)
+    print("-" * 55)
     
     hit_counts = {"Fixed": 0, "Recurs": 0, "Struct": 0}
     
@@ -152,8 +152,10 @@ def main():
             
         print(f"{q_str:<45} | {'Hit' if f_hit else 'Miss':<5} | {'Hit' if r_hit else 'Miss':<6} | {'Hit' if s_hit else 'Miss':<6}")
         
-    print("-" * 75)
-    print(f"{'Tổng số câu đúng (Accuracy@1):':<45} | {hit_counts['Fixed']}/5   | {hit_counts['Recurs']}/5    | {hit_counts['Struct']}/5")
+    print("-" * 55)
+    
+    total = len(test_cases)
+    print(f"{'Tổng số câu đúng (Accuracy@1):':<45} | {hit_counts['Fixed']}/{total}   | {hit_counts['Recurs']}/{total}    | {hit_counts['Struct']}/{total}")
     
     print_separator("HOÀN TẤT DEMO")
 
