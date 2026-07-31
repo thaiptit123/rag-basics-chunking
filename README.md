@@ -1,6 +1,6 @@
 # RAG Basics: Chunking
 
-Repository này chứa mã nguồn thực hành cho **Bài 11 - RAG Basics: Chunking**. Chúng ta sẽ so sánh ba chiến lược chia tài liệu phổ biến: Fixed-size, Recursive và Semantic/Structure-aware.
+Repository này chứa mã nguồn thực hành cho **Bài 11 - RAG Basics: Chunking**. Chúng ta sẽ so sánh ba chiến lược chia tài liệu phổ biến: Fixed-size, Recursive và Structure-aware Markdown Chunking.
 
 ## Hướng dẫn chạy code
 
