@@ -97,7 +97,7 @@ def main():
     # 5 câu query thử nghiệm và nội dung kỳ vọng để chấm điểm Hit/Miss
     test_cases = [
         {
-            "query": "Công ty làm việc vào sáng thứ mấy?",
+            "query": "Công ty làm việc vào những ngày nào trong tuần?",
             "expected_keyword": "Từ Thứ Hai đến Thứ Sáu"
         },
         {
