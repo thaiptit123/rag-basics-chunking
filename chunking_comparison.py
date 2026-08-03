@@ -69,6 +69,7 @@ def main():
     
     # Tiếp tục chia nhỏ các phần bằng Recursive để đảm bảo kích thước không quá lớn
     structure_docs = recursive_splitter.split_documents(md_docs)
+    # Lấy riêng page_content để so sánh số lượng token và tính embedding
     structure_chunks = [doc.page_content for doc in structure_docs]
 
     # Hàm phụ để in thống kê độ dài
@@ -122,9 +123,13 @@ def main():
     def evaluate_top_1(query_emb, doc_embs, chunks, expected_keyword):
         scores = doc_embs @ query_emb
         best_idx = np.argmax(scores)
-        snippet = chunks[best_idx]
+        best_score = scores[best_idx]
+        best_item = chunks[best_idx]
+        
+        # Lấy nội dung text dù truyền vào string hay Document
+        snippet = best_item.page_content if hasattr(best_item, 'page_content') else best_item
         is_hit = expected_keyword.lower() in snippet.lower()
-        return is_hit, snippet
+        return is_hit, snippet, best_score, best_item
     
     # In Bảng kết quả (Format text table)
     print(f"{'Query':<45} | {'Fixed':<5} | {'Recurs':<6} | {'Struct':<6}")
@@ -137,11 +142,10 @@ def main():
         expected = test["expected_keyword"]
         q_emb = model.encode(query, convert_to_numpy=True, normalize_embeddings=True)
         
-        # Lấy đánh giá Top 1 của từng chiến lược
-        # Lấy đánh giá Top 1 của từng chiến lược
-        f_hit, f_snip = evaluate_top_1(q_emb, fixed_embs, fixed_chunks, expected)
-        r_hit, r_snip = evaluate_top_1(q_emb, recursive_embs, recursive_chunks, expected)
-        s_hit, s_snip = evaluate_top_1(q_emb, structure_embs, structure_chunks, expected)
+        # Lấy đánh giá Top 1 của từng chiến lược (Truyền structure_docs thay vì structure_chunks để giữ metadata)
+        f_hit, f_snip, f_score, _ = evaluate_top_1(q_emb, fixed_embs, fixed_chunks, expected)
+        r_hit, r_snip, r_score, _ = evaluate_top_1(q_emb, recursive_embs, recursive_chunks, expected)
+        s_hit, s_snip, s_score, s_doc = evaluate_top_1(q_emb, structure_embs, structure_docs, expected)
         
         if f_hit: hit_counts["Fixed"] += 1
         if r_hit: hit_counts["Recurs"] += 1
@@ -155,9 +159,9 @@ def main():
         
         # Lưu snippet để in chi tiết
         test_cases[i]["snippets"] = {
-            "Fixed": f_snip.replace('\n', ' ')[:30] + "...",
-            "Recurs": r_snip.replace('\n', ' ')[:30] + "...",
-            "Struct": s_snip.replace('\n', ' ')[:30] + "..."
+            "Fixed": (f_snip.replace('\n', ' ')[:30] + "...", f_score),
+            "Recurs": (r_snip.replace('\n', ' ')[:30] + "...", r_score),
+            "Struct": (s_snip.replace('\n', ' ')[:30] + "...", s_score, s_doc.metadata if hasattr(s_doc, 'metadata') else {})
         }
         
     print("-" * 55)
@@ -168,9 +172,15 @@ def main():
     print("\nChi tiết Top-1 Chunk được lấy cho mỗi Query:")
     for i, test in enumerate(test_cases):
         print(f"\nQ{i+1}: {test['query']}")
-        print(f" - Fixed : {test['snippets']['Fixed']}")
-        print(f" - Recurs: {test['snippets']['Recurs']}")
-        print(f" - Struct: {test['snippets']['Struct']}")
+        f_text, f_sc = test['snippets']['Fixed']
+        r_text, r_sc = test['snippets']['Recurs']
+        s_text, s_sc, s_meta = test['snippets']['Struct']
+        
+        print(f" - Fixed  [{f_sc:.3f}]: {f_text}")
+        print(f" - Recurs [{r_sc:.3f}]: {r_text}")
+        print(f" - Struct [{s_sc:.3f}]: {s_text}")
+        if s_meta:
+            print(f"   => Metadata: {s_meta}")
         
     print_separator("HOÀN TẤT DEMO")
 
