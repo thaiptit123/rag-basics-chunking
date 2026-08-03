@@ -99,28 +99,28 @@ def main():
     test_cases = [
         {
             "query": "Công ty làm việc vào những ngày nào trong tuần?",
-            "expected_keyword": "Từ Thứ Hai đến Thứ Sáu"
+            "expected_keywords": ["Từ Thứ Hai đến Thứ Sáu"]
         },
         {
             "query": "Chứng chỉ nào được đài thọ 100%?",
-            "expected_keyword": "AWS Certified"
+            "expected_keywords": ["AWS Certified"]
         },
         {
             "query": "Doanh thu dịch vụ AI tháng 1 là bao nhiêu?",
-            "expected_keyword": "Doanh thu Dịch vụ AI"
+            "expected_keywords": ["Doanh thu Dịch vụ AI"]
         },
         {
             "query": "Lợi nhuận quý 1 đạt mức bao nhiêu?",
-            "expected_keyword": "Tổng lợi nhuận trước thuế Quý 1 đạt"
+            "expected_keywords": ["Tổng lợi nhuận trước thuế Quý 1 đạt"]
         },
         {
             "query": "Có được dùng ChatGPT phân tích code không?",
-            "expected_keyword": "ChatGPT, Claude"
+            "expected_keywords": ["ChatGPT", "Claude"]
         }
     ]
     
     # Hàm con để tìm chunk có điểm cao nhất và xác định Hit/Miss
-    def evaluate_top_1(query_emb, doc_embs, chunks, expected_keyword):
+    def evaluate_top_1(query_emb, doc_embs, chunks, expected_keywords):
         scores = doc_embs @ query_emb
         best_idx = np.argmax(scores)
         best_score = scores[best_idx]
@@ -128,7 +128,7 @@ def main():
         
         # Lấy nội dung text dù truyền vào string hay Document
         snippet = best_item.page_content if hasattr(best_item, 'page_content') else best_item
-        is_hit = expected_keyword.lower() in snippet.lower()
+        is_hit = any(keyword.casefold() in snippet.casefold() for keyword in expected_keywords)
         return is_hit, snippet, best_score, best_item
     
     # In Bảng kết quả (Format text table)
@@ -139,7 +139,7 @@ def main():
     
     for i, test in enumerate(test_cases):
         query = test["query"]
-        expected = test["expected_keyword"]
+        expected = test["expected_keywords"]
         q_emb = model.encode(query, convert_to_numpy=True, normalize_embeddings=True)
         
         # Lấy đánh giá Top 1 của từng chiến lược (Truyền structure_docs thay vì structure_chunks để giữ metadata)
