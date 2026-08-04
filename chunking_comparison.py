@@ -58,8 +58,8 @@ def main():
     
     # Chiến lược 3: Structure-aware Markdown Chunking
     headers_to_split_on = [
-        ("#", "Header 1"),
-        ("##", "Header 2")
+        ("#", "Chương"),
+        ("##", "Điều")
     ]
     markdown_splitter = MarkdownHeaderTextSplitter(
         headers_to_split_on=headers_to_split_on,
@@ -98,24 +98,24 @@ def main():
     # 5 câu query thử nghiệm và nội dung kỳ vọng để chấm điểm Hit/Miss
     test_cases = [
         {
-            "query": "Công ty làm việc vào những ngày nào trong tuần?",
-            "expected_keywords": ["Từ Thứ Hai đến Thứ Sáu"]
+            "query": "Chế độ sở hữu đất đai do ai đại diện?",
+            "expected_keywords": ["đại diện chủ sở hữu toàn dân về đất đai"]
         },
         {
-            "query": "Chứng chỉ nào được đài thọ 100%?",
-            "expected_keywords": ["AWS Certified"]
+            "query": "Người dân có quyền được cấp sổ đỏ không?",
+            "expected_keywords": ["được cấp Giấy chứng nhận quyền sử dụng đất"]
         },
         {
-            "query": "Doanh thu dịch vụ AI tháng 1 là bao nhiêu?",
-            "expected_keywords": ["Doanh thu Dịch vụ AI"]
+            "query": "Chính sách với đồng bào dân tộc thiểu số là gì?",
+            "expected_keywords": ["đồng bào dân tộc thiểu số"]
         },
         {
-            "query": "Lợi nhuận quý 1 đạt mức bao nhiêu?",
-            "expected_keywords": ["Tổng lợi nhuận trước thuế Quý 1 đạt"]
+            "query": "Đất đai phải sử dụng như thế nào cho đúng nguyên tắc?",
+            "expected_keywords": ["Đúng mục đích sử dụng đất"]
         },
         {
-            "query": "Có được dùng ChatGPT phân tích code không?",
-            "expected_keywords": ["ChatGPT", "Claude"]
+            "query": "Có được dùng phân bón hóa học bừa bãi không?",
+            "expected_keywords": ["không được lạm dụng", "phân bón hóa học"]
         }
     ]
     

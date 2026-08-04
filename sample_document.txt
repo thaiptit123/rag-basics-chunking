@@ -1,38 +1,22 @@
-# Chính sách và Quy định Nội bộ Công ty TNHH AI Guru
+# Chương I: Quy định chung
 
-## 1. Thời gian làm việc và Nghỉ ngơi
+## Điều 1. Phạm vi điều chỉnh
+Luật này quy định về chế độ sở hữu đất đai, quyền hạn và trách nhiệm của Nhà nước đại diện chủ sở hữu toàn dân về đất đai và thống nhất quản lý về đất đai, chế độ quản lý và sử dụng đất đai, quyền và nghĩa vụ của công dân, người sử dụng đất đối với đất đai thuộc lãnh thổ của nước Cộng hòa xã hội chủ nghĩa Việt Nam.
 
-Công ty quy định thời gian làm việc chuẩn cho toàn bộ nhân viên khối văn phòng như sau:
-- Buổi sáng: Từ 08:30 đến 12:00
-- Nghỉ trưa: Từ 12:00 đến 13:30
-- Buổi chiều: Từ 13:30 đến 17:30
-- Ngày làm việc: Từ Thứ Hai đến Thứ Sáu hàng tuần. Thứ Bảy và Chủ Nhật nghỉ.
+## Điều 2. Đối tượng áp dụng
+1. Cơ quan nhà nước thực hiện quyền hạn và trách nhiệm đại diện chủ sở hữu toàn dân về đất đai, thực hiện nhiệm vụ thống nhất quản lý nhà nước về đất đai.
+2. Người sử dụng đất.
+3. Các đối tượng khác có liên quan đến việc quản lý, sử dụng đất đai.
 
-Trong trường hợp cần làm thêm giờ (OT) để hoàn thành tiến độ dự án, nhân viên cần có sự phê duyệt trước từ Quản lý trực tiếp (Line Manager) thông qua hệ thống ERP của công ty.
+# Chương II: Quyền và trách nhiệm của Nhà nước, công dân đối với đất đai
 
-## 2. Chính sách Đào tạo và Phát triển
+## Điều 12. Chính sách của Nhà nước về đất đai
+1. Bảo đảm người sử dụng đất được cấp Giấy chứng nhận quyền sử dụng đất, quyền sở hữu tài sản gắn liền với đất khi đủ điều kiện theo quy định của pháp luật về đất đai.
+2. Có chính sách tạo quỹ đất để thực hiện chính sách hỗ trợ đất đai đối với đồng bào dân tộc thiểu số theo quy định của Luật này.
+3. Ưu tiên giao đất, cho thuê đất đối với đồng bào dân tộc thiểu số không có đất hoặc thiếu đất sản xuất.
 
-AI Guru luôn chú trọng việc nâng cao năng lực cho đội ngũ kỹ sư. Hằng năm, công ty phân bổ ngân sách đào tạo cho từng cá nhân và phòng ban.
-Các chứng chỉ được công ty đài thọ 100% chi phí thi bao gồm:
-- AWS Certified Solutions Architect (Associate và Professional)
-- Google Cloud Professional Machine Learning Engineer
-- CKA (Certified Kubernetes Administrator)
-
-Để được thanh toán chi phí, nhân viên cần nộp chứng chỉ và hóa đơn hợp lệ về phòng Nhân sự (HR) trong vòng 30 ngày kể từ ngày thi đạt.
-
-## 3. Báo cáo Tài chính Quý 1 năm 2026
-
-Dưới đây là tóm tắt doanh thu và chi phí của công ty trong Quý 1 năm 2026. Số liệu được tổng hợp bởi Phòng Kế toán:
-
-| Hạng mục | Tháng 1 (VNĐ) | Tháng 2 (VNĐ) | Tháng 3 (VNĐ) | Tổng cộng (VNĐ) |
-| --- | --- | --- | --- | --- |
-| Doanh thu Dịch vụ AI | 1,500,000,000 | 1,200,000,000 | 1,800,000,000 | 4,500,000,000 |
-| Chi phí Máy chủ (Cloud) | 300,000,000 | 280,000,000 | 320,000,000 | 900,000,000 |
-| Chi phí Lương nhân viên | 800,000,000 | 800,000,000 | 850,000,000 | 2,450,000,000 |
-| Khấu hao thiết bị | 50,000,000 | 50,000,000 | 50,000,000 | 150,000,000 |
-
-Tổng lợi nhuận trước thuế Quý 1 đạt 1,000,000,000 VNĐ, vượt 15% so với mục tiêu đề ra.
-
-## 4. Quy định Bảo mật Thông tin (NDA)
-
-Tất cả nhân viên AI Guru phải tuân thủ nghiêm ngặt Thỏa thuận Bảo mật Thông tin (NDA) đã ký khi nhận việc. Bất kỳ hành vi tiết lộ mã nguồn (source code), dữ liệu khách hàng hoặc chiến lược kinh doanh ra bên ngoài đều sẽ bị xử lý kỷ luật, và có thể dẫn đến việc chấm dứt hợp đồng lao động ngay lập tức cũng như bị khởi kiện theo pháp luật hiện hành. Việc sử dụng các công cụ Generative AI công cộng (như ChatGPT, Claude) để đưa code nội bộ của công ty lên phân tích bị nghiêm cấm hoàn toàn. Nhân viên chỉ được sử dụng hệ thống AI nội bộ do công ty triển khai.
+## Điều 13. Nguyên tắc sử dụng đất
+1. Đúng mục đích sử dụng đất.
+2. Bền vững, tiết kiệm, có hiệu quả đối với đất đai và tài nguyên trên bề mặt, trong lòng đất.
+3. Bảo vệ đất, bảo vệ môi trường, thích ứng với biến đổi khí hậu, không được lạm dụng thuốc bảo vệ thực vật, phân bón hóa học làm ô nhiễm, thoái hóa đất.
+4. Thực hiện quyền và nghĩa vụ của người sử dụng đất trong thời hạn sử dụng đất theo quy định của Luật này và quy định khác của pháp luật có liên quan; không xâm phạm quyền, lợi ích hợp pháp của người sử dụng đất liền kề và xung quanh.
